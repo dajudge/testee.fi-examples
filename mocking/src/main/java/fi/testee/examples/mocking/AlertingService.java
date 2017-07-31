@@ -13,9 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fi.testee.examples.sample1;
+package fi.testee.examples.mocking;
 
-public class EmailDispatchAdapter {
-    public void sendEmail(String address, String subject, String body) {
+import javax.inject.Inject;
+
+public class AlertingService {
+    @Inject
+    private HttpCheckingAdapter httpCheckingAdapter;
+    @Inject
+    private EmailDispatchAdapter emailDispatchAdapter;
+
+    public void alertIfUnavailable(String url) {
+        if (!httpCheckingAdapter.checkUrl(url)) {
+            emailDispatchAdapter.sendEmail(
+                    "alex@it-stockinger.de",
+                    url + " is down",
+                    "The URL " + url + " could not be reached"
+            );
+        }
     }
 }

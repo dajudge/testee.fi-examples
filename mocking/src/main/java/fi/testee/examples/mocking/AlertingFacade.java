@@ -13,11 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fi.testee.examples.sample1;
+package fi.testee.examples.mocking;
 
-public class HttpCheckingAdapter {
-    public boolean checkUrl(String url) {
-        // HTTP request here, returns true if URL is available, false otherwise
-        return false;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.inject.Inject;
+
+public class AlertingFacade {
+    private static final Logger LOG = LoggerFactory.getLogger(AlertingFacade.class);
+
+    @Inject
+    private AlertingService alertingService;
+
+    public void alertIfUnavailable(String url) {
+        LOG.info("Checking URL: {}", url);
+        alertingService.alertIfUnavailable(url);
     }
 }

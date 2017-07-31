@@ -13,22 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fi.testee.examples.sample1;
+package fi.testee.examples.mocking;
 
 import fi.testee.junit4.TestEEfi;
-import org.easymock.Mock;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 
 import javax.inject.Inject;
 
-import static org.easymock.EasyMock.expect;
-import static org.easymock.EasyMock.expectLastCall;
-import static org.easymock.EasyMock.replay;
-import static org.easymock.EasyMock.verify;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(TestEEfi.class)
-public class AlertingFacadeWithEasyMockTest {
+public class AlertingFacadeWithMockitoTest {
     @Mock
     private HttpCheckingAdapter httpCheckingAdapter;
     @Mock
@@ -38,27 +38,29 @@ public class AlertingFacadeWithEasyMockTest {
 
     @Test
     public void dispatchesEmailWhenUnreachable() {
-        expect(httpCheckingAdapter.checkUrl("http://www.example.com")).andReturn(false).once();
-        emailDispatchAdapter.sendEmail(
+        // Given
+        when(httpCheckingAdapter.checkUrl(any())).thenReturn(false);
+
+        // When
+        underTest.alertIfUnavailable("http://www.example.com");
+
+        // Then
+        verify(emailDispatchAdapter).sendEmail(
                 "alex@it-stockinger.de",
                 "http://www.example.com is down",
                 "The URL http://www.example.com could not be reached"
         );
-        expectLastCall().once();
-        replay(httpCheckingAdapter, emailDispatchAdapter);
-
-        underTest.alertIfUnavailable("http://www.example.com");
-
-        verify(httpCheckingAdapter, emailDispatchAdapter);
     }
 
     @Test
     public void notDispatchesEmailWhenReachable() {
-        expect(httpCheckingAdapter.checkUrl("http://www.example.com")).andReturn(true);
-        replay(httpCheckingAdapter, emailDispatchAdapter);
+        // Given
+        when(httpCheckingAdapter.checkUrl(any())).thenReturn(true);
 
+        // When
         underTest.alertIfUnavailable("http://www.example.com");
 
-        verify(httpCheckingAdapter, emailDispatchAdapter);
+        // Then
+        verify(emailDispatchAdapter, never()).sendEmail(any(), any(), any());
     }
 }
