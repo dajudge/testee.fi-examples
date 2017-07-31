@@ -6,8 +6,7 @@ repositories {
 
 dependencies {
     compile 'javax:javaee-api:7.0'
-    compile 'ch.qos.logback:logback-classic:1.1.7'
 
     testCompile 'fi.testee:testeefi-junit4-all:0.2.1'
-    testCompile 'fi.testee:testeefi-easymock:0.2.1'
+    testCompile 'ch.qos.logback:logback-classic:1.1.7'
 }
