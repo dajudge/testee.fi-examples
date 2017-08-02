@@ -1,0 +1,21 @@
+apply plugin: "java"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'javax:javaee-api:7.0'
+
+    testCompile 'fi.testee:testeefi-cucumber-all:0.2.1'
+    testCompile 'ch.qos.logback:logback-classic:1.1.7'
+    testCompile 'org.hamcrest:hamcrest-all:1.3'
+}
+
+test << {
+    javaexec {
+        main = "cucumber.api.cli.Main"
+        classpath = configurations.testRuntime + sourceSets.main.output + sourceSets.test.output
+        args = ['--plugin', 'pretty', '--glue', 'steps', 'src/test/resources']
+    }
+}
