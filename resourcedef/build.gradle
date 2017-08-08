@@ -2,14 +2,11 @@ apply plugin: "java"
 
 repositories {
     mavenCentral()
-    maven {
-        url = "https://oss.sonatype.org/content/repositories/snapshots/"
-    }
 }
 
 dependencies {
     compile 'javax:javaee-api:7.0'
 
-    testCompile 'fi.testee:testeefi-junit4-all:0.4.0-SNAPSHOT'
+    testCompile 'fi.testee:testeefi-junit4-all:0.4.0'
     testCompile 'ch.qos.logback:logback-classic:1.1.7'
 }
