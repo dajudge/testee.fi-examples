@@ -1,3 +1,4 @@
 include "mocking"
 include "persistence"
 include "cucumber"
+include "resourcedef"
