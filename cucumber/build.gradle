@@ -7,7 +7,7 @@ repositories {
 dependencies {
     compile 'javax:javaee-api:7.0'
 
-    testCompile 'fi.testee:testeefi-cucumber-all:0.4.1'
+    testCompile 'fi.testee:testeefi-cucumber-all:0.4.2'
     testCompile 'ch.qos.logback:logback-classic:1.1.7'
     testCompile 'org.hamcrest:hamcrest-all:1.3'
 }

@@ -7,7 +7,7 @@ repositories {
 dependencies {
     compile 'javax:javaee-api:7.0'
 
-    testCompile 'fi.testee:testeefi-junit5-all:0.4.1'
+    testCompile 'fi.testee:testeefi-junit5-all:0.4.2'
     testCompile 'org.junit.platform:junit-platform-launcher:1.0.0-M6'
     testCompile 'ch.qos.logback:logback-classic:1.1.7'
 }
