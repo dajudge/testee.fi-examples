@@ -26,7 +26,7 @@ public class WebDriverProducer {
     }
 
     private WebDriverFactory getWebDriverFactory() {
-        final String factoryClassName = System.getProperty(getClass().getName() + ".factoryClass");
+        final String factoryClassName = System.getProperty("webDriver");
         if (null == factoryClassName) {
             return new HtmlUnit();
         }

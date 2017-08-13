@@ -25,5 +25,8 @@ test.doLast {
                 '--plugin', 'pretty',
                 '--glue', 'steps', 'src/test/resources'
         ]
+        systemProperties = [
+                webDriver: System.getProperty("webDriver") ?: "HtmlUnit"
+        ]
     }
 }
