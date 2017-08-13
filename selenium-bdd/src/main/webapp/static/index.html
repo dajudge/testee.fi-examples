@@ -1,0 +1,57 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style/loader.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+</head>
+<body ng-app="testapp" stylxe="margin: 0px">
+<div ng-controller="LoadingIndicatorController">
+    <div class="loader" ng-show="loading"></div>
+    <div class="loaderPlaceholder" ng-show="!loading"></div>
+</div>
+<div class="container" ng-controller="ShoppingListController" style="margin-top: 5em">
+    <div class="jumbotron">
+        <h1>Shopping list</h1>
+        <form>
+            <div class="form-group">
+                <label for="itemToAdd" class="col-2 col-form-label">Item to add:</label>
+                <div class="col-10">
+                    <input id="itemToAdd" class="form-control" ng-model="input.value" placeholder="e.g. Potatoes"/>
+                </div>
+            </div>
+            <button class="btn btn-primary" ng-click="addItem()">Add</button>
+        </form>
+
+        <table class="table table-striped">
+            <thead style="font-weight: bold">
+            <tr>
+                <td></td>
+                <td>Item</td>
+                <td>Date</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in shoppingList.rows">
+                <td>
+                    <button type="button" class="btn btn-success" ng-click="deleteItem(row.uuid)">&#10004;</button>
+                </td>
+                <td style="vertical-align: middle">{{row.title}}</td>
+                <td style="vertical-align: middle">{{row.date | date:'medium'}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="app/app.js"></script>
+<script src="app/services/serverService.js"></script>
+<script src="app/services/shoppingListService.js"></script>
+<script src="app/controllers/loadingIndicatorController.js"></script>
+<script src="app/controllers/shoppingListController.js"></script>
+
+</body>
+</html>
