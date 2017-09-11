@@ -7,8 +7,8 @@ repositories {
 dependencies {
     compile 'javax:javaee-api:7.0'
 
-    testCompile 'fi.testee:testeefi-junit4-all:0.5.1'
-    testCompile 'fi.testee:testeefi-rest:0.5.1'
+    testCompile 'fi.testee:testeefi-junit4-all:0.6.0'
+    testCompile 'fi.testee:testeefi-rest:0.6.0'
     testCompile 'com.squareup.okhttp3:okhttp:3.8.1'
     testCompile 'org.json:json:20170516'
     testCompile 'ch.qos.logback:logback-classic:1.1.7'
